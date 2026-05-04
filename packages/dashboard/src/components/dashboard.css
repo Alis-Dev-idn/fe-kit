@@ -1,0 +1,96 @@
+:root {
+  --dashboard-sidebar-bg: #1e293b;
+  --dashboard-sidebar-text: #94a3b8;
+  --dashboard-sidebar-active-bg: #3b82f6;
+  --dashboard-sidebar-active-text: #ffffff;
+  --dashboard-navbar-bg: #ffffff;
+  --dashboard-navbar-border: #e2e8f0;
+  --dashboard-content-bg: #f8fafc;
+  --dashboard-text-primary: #1e293b;
+  --dashboard-text-secondary: #64748b;
+  --navbar-height: 64px;
+}
+
+[data-dashboard-theme="dark"] {
+  --dashboard-sidebar-bg: #0f172a;
+  --dashboard-sidebar-text: #94a3b8;
+  --dashboard-navbar-bg: #1e293b;
+  --dashboard-navbar-border: #334155;
+  --dashboard-content-bg: #0f172a;
+  --dashboard-text-primary: #f1f5f9;
+  --dashboard-text-secondary: #94a3b8;
+}
+
+.dashboard-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--dashboard-content-bg);
+  color: var(--dashboard-text-primary);
+}
+
+.dashboard-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.dashboard-sidebar {
+  background: var(--dashboard-sidebar-bg);
+  color: var(--dashboard-sidebar-text);
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.dashboard-navbar {
+  height: var(--navbar-height);
+  background: var(--dashboard-navbar-bg);
+  border-bottom: 1px solid var(--dashboard-navbar-border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+
+.dashboard-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  cursor: pointer;
+  gap: 12px;
+  transition: all 0.2s;
+}
+
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-item-active {
+  background: var(--dashboard-sidebar-active-bg);
+  color: var(--dashboard-sidebar-active-text);
+}
+
+.mobile-bottom-nav {
+  height: 64px;
+  background: var(--dashboard-navbar-bg);
+  border-top: 1px solid var(--dashboard-navbar-border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    display: none;
+  }
+}

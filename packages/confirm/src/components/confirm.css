@@ -1,0 +1,186 @@
+:root {
+  --confirm-bg: #ffffff;
+  --confirm-text: #1a1a1a;
+  --confirm-border: #e5e7eb;
+  --confirm-backdrop: rgba(0, 0, 0, 0.5);
+  --confirm-btn-confirm-bg: #3b82f6;
+  --confirm-btn-cancel-bg: #f3f4f6;
+  --confirm-btn-confirm-text: #ffffff;
+  --confirm-btn-cancel-text: #374151;
+  --confirm-radius: 8px;
+  --confirm-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+[data-confirm-theme="dark"] {
+  --confirm-bg: #1f2937;
+  --confirm-text: #f9fafb;
+  --confirm-border: #374151;
+  --confirm-backdrop: rgba(0, 0, 0, 0.7);
+  --confirm-btn-confirm-bg: #3b82f6;
+  --confirm-btn-cancel-bg: #374151;
+  --confirm-btn-confirm-text: #ffffff;
+  --confirm-btn-cancel-text: #f9fafb;
+}
+
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+  transition: opacity 0.2s ease-out;
+}
+
+.confirm-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--confirm-backdrop);
+}
+
+.confirm-backdrop-blur {
+  backdrop-filter: blur(4px);
+}
+
+.confirm-dialog {
+  position: relative;
+  background: var(--confirm-bg);
+  color: var(--confirm-text);
+  border-radius: var(--confirm-radius);
+  box-shadow: var(--confirm-shadow);
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+/* Animations */
+.confirm-fade-in { opacity: 0; }
+.confirm-fade-in-active { opacity: 1; }
+
+.confirm-zoom-in { transform: scale(0.9); opacity: 0; }
+.confirm-zoom-in-active { transform: scale(1); opacity: 1; }
+
+.confirm-slide-in { transform: translateY(20px); opacity: 0; }
+.confirm-slide-in-active { transform: translateY(0); opacity: 1; }
+
+.confirm-bounce-in { transform: scale(0.5); opacity: 0; }
+.confirm-bounce-in-active { transform: scale(1); opacity: 1; transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Mobile Bottom Sheet */
+@media (max-width: 768px) {
+  .confirm-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .confirm-dialog {
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+  }
+
+  .confirm-dialog-active {
+    transform: translateY(0);
+  }
+  
+  .confirm-mobile-handle {
+    width: 40px;
+    height: 4px;
+    background: var(--confirm-border);
+    border-radius: 2px;
+    margin: 8px auto;
+  }
+}
+
+.confirm-content {
+  padding: 24px;
+}
+
+.confirm-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.confirm-message {
+  font-size: 1rem;
+  color: var(--confirm-text);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.confirm-actions {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: var(--confirm-border);
+  opacity: 0.1; /* Just for visual separation, actual background will be overlay */
+}
+
+/* Correct actions styling */
+.confirm-actions-inner {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid var(--confirm-border);
+}
+
+.confirm-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  transition: opacity 0.2s;
+}
+
+.confirm-btn:hover {
+  opacity: 0.9;
+}
+
+.confirm-btn-confirm {
+  background: var(--confirm-btn-confirm-bg);
+  color: var(--confirm-btn-confirm-text);
+}
+
+.confirm-btn-cancel {
+  background: var(--confirm-btn-cancel-bg);
+  color: var(--confirm-btn-cancel-text);
+}
+
+.confirm-prompt-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--confirm-border);
+  border-radius: 6px;
+  margin-top: 16px;
+  background: var(--confirm-bg);
+  color: var(--confirm-text);
+  font-family: inherit;
+}
+
+.confirm-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+.confirm-countdown {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-top: 8px;
+}

@@ -1,0 +1,96 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.2s ease-out;
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+}
+
+.modal-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-body {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Close Buttons */
+.modal-close-windows {
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.modal-close-macos {
+  display: flex;
+  gap: 8px;
+  margin-right: 16px;
+}
+
+.macos-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.macos-red { background: #ff5f56; cursor: pointer; }
+.macos-yellow { background: #ffbd2e; opacity: 0.5; }
+.macos-green { background: #27c93f; opacity: 0.5; }
+
+/* Animations */
+.modal-fade-in { opacity: 0; }
+.modal-fade-in-active { opacity: 1; }
+
+.modal-zoom-in { transform: scale(0.95); opacity: 0; }
+.modal-zoom-in-active { transform: scale(1); opacity: 1; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .modal-overlay-bottom { align-items: flex-end; }
+  .modal-content-bottom {
+    width: 100vw;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+  }
+  .modal-content-bottom-active { transform: translateY(0); }
+}

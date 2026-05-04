@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@alisdev/fe-kit-*": ["packages/*/src"]
+    }
+  },
+  "include": ["src"]
+}
