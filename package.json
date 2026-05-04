@@ -1,6 +1,6 @@
 {
   "name": "@alisdev/fe-kit",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "packageManager": "pnpm@10.28.0",
   "description": "All-in-one frontend utility kit for React + TypeScript + Vite",
   "repository": {
@@ -37,13 +37,13 @@
     "zod": "^3.x"
   },
   "peerDependencies": {
-    "react": "^18.x",
-    "react-dom": "^18.x"
+    "react": "^18.x || ^19.x",
+    "react-dom": "^18.x || ^19.x"
   },
   "devDependencies": {
     "@types/node": "^20.x",
-    "@types/react": "^18.x",
-    "@types/react-dom": "^18.x",
+    "@types/react": "^19.x",
+    "@types/react-dom": "^19.x",
     "react-router-dom": "^7.14.2",
     "tsup": "^8.x",
     "turbo": "^2.x",
