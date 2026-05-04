@@ -64,13 +64,15 @@ export type {
 } from "../packages/confirm/src/types";
 
 // ─── MODAL ────────────────────────────────────────────────────────────────────
-export { Modal, useModal, ModalKit } from "../packages/modal/src";
+export { Modal, ModalStack, modal, useModal, ModalKit } from "../packages/modal/src";
 export type { 
   ModalSize, 
   ModalPosition, 
   CloseButtonStyle, 
   ScrollBehavior, 
-  ModalProps 
+  ModalProps,
+  ModalConfig,
+  ModalInstance
 } from "../packages/modal/src";
 
 // ─── DASHBOARD ────────────────────────────────────────────────────────────────

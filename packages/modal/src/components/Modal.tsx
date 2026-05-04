@@ -1,25 +1,9 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { ModalSize, ModalPosition, AnimationConfig, CloseButtonStyle, ScrollBehavior } from "../types";
+import { ModalSize, ModalPosition, AnimationConfig, CloseButtonStyle, ScrollBehavior, ModalProps } from "../types";
 import { ModalKit } from "../core/ModalKit";
 import { modalStack } from "../core/ModalStack";
 import "./modal.css";
-
-export interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onOpen?: () => void;
-  size?: ModalSize;
-  position?: ModalPosition;
-  closeOnBackdrop?: boolean;
-  closeOnEscape?: boolean;
-  preventClose?: boolean;
-  closeButtonStyle?: CloseButtonStyle;
-  closeButton?: React.ReactNode;
-  scrollBehavior?: ScrollBehavior;
-  animation?: AnimationConfig;
-  children: React.ReactNode;
-}
 
 const SIZE_PRESETS: Record<string, string> = {
   xs: "320px",
@@ -40,9 +24,10 @@ export const Modal: React.FC<ModalProps> = (props) => {
     closeOnBackdrop = true,
     closeOnEscape = true,
     preventClose = false,
+    id: providedId,
   } = props;
-
-  const [id] = useState(() => Math.random().toString(36).substring(2, 9));
+ 
+  const [id] = useState(() => providedId || Math.random().toString(36).substring(2, 9));
   const [mounted, setMounted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const config = ModalKit.getConfig();
