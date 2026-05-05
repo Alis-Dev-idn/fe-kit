@@ -17,6 +17,9 @@ export * from "../packages/form/src";
 // ─── INPUT ────────────────────────────────────────────────────────────────────
 export * from "../packages/input/src";
 
+// ─── UI ───────────────────────────────────────────────────────────────────────
+export * from "../packages/ui/src";
+
 // ─── STORE ────────────────────────────────────────────────────────────────────
 export { createStore, createContextStore } from "../packages/store/src";
 export { logger as storeLogger } from "../packages/store/src/middleware/logger";
