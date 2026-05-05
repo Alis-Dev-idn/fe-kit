@@ -12,7 +12,7 @@ export interface RealtimeLocationOptions {
 export function useRealtimeLocation(options: RealtimeLocationOptions = {}) {
   const [position, setPosition] = useState<{ lng: number; lat: number }>({ lng: 0, lat: 0 });
   const [displayPosition, setDisplayPosition] = useState<{ lng: number; lat: number }>({ lng: 0, lat: 0 });
-  const animRef = useRef<number>();
+  const animRef = useRef<number>(undefined);
   const startTimeRef = useRef<number>(0);
   const startPosRef = useRef<{ lng: number; lat: number }>({ lng: 0, lat: 0 });
   const targetPosRef = useRef<{ lng: number; lat: number }>({ lng: 0, lat: 0 });
