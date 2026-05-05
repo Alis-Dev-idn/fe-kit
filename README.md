@@ -17,6 +17,7 @@ This monorepo consists of several high-quality kits designed to work together se
 - **[Input Kit](./packages/input)**: A complete set of styled, accessible input components.
 - **[UI Kit](./packages/ui)**: Modern UI Primitives & Overlay System.
 - **[Chart Kit](./packages/chart)**: Recharts Abstraction & Data Visualization with Real-time Support.
+- **[Map Kit](./packages/map)**: High-performance Geospatial Layer with MapLibre GL.
 - **[Route Kit](./packages/route)**: Config-driven routing with Auth & Role guards.
 
 ## 🚀 Quick Start
