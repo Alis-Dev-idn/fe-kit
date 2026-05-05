@@ -154,5 +154,12 @@ export function useForm<T extends z.ZodRawShape>(
     setError,
     reset,
     watch,
+    field: useCallback((key: keyof Values) => ({
+      name: key as string,
+      value: values[key],
+      onChange: (value: unknown) => handleChange(key, value),
+      onBlur: () => handleBlur(key),
+      error: errors[key]
+    }), [values, errors, handleChange, handleBlur]),
   };
 }

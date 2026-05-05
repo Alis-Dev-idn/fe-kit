@@ -30,4 +30,15 @@ export interface UseFormResult<T> {
   setError: (field: keyof T, message: string) => void;
   reset: (values?: Partial<T>) => void;
   watch: <K extends keyof T>(field: K | K[]) => any;
+  /**
+   * Helper to bind input components to form state.
+   * Returns: { name, value, onChange, onBlur, error }
+   */
+  field: <K extends keyof T>(key: K) => {
+    name: string;
+    value: any;
+    onChange: (value: any) => void;
+    onBlur: () => void;
+    error?: string;
+  };
 }
