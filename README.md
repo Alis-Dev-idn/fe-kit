@@ -14,6 +14,8 @@ This monorepo consists of several high-quality kits designed to work together se
 - **[Table Kit](./packages/table)**: Hybrid client/server table management with Excel export.
 - **[Modal Kit](./packages/modal)**: Multi-layer modal stacking system.
 - **[Dashboard Kit](./packages/dashboard)**: Premium responsive dashboard layout components.
+- **[Input Kit](./packages/input)**: A complete set of styled, accessible input components.
+- **[UI Kit](./packages/ui)**: Modern UI Primitives & Overlay System.
 - **[Route Kit](./packages/route)**: Config-driven routing with Auth & Role guards.
 
 ## 🚀 Quick Start

@@ -84,6 +84,68 @@ Flexible flexbox wrapper for consistent spacing.
 </Stack>
 ```
 
+### Progress
+A clean progress bar.
+
+```tsx
+<Progress value={70} color="var(--ui-success)" />
+```
+
+### Badge
+Small status indicators.
+
+```tsx
+<Badge variant="success">Active</Badge>
+```
+
+### Skeleton
+Animated loading placeholders.
+
+```tsx
+<Skeleton height="2rem" />
+<Skeleton width="40px" height="40px" circle />
+```
+
+### Divider
+Horizontal or vertical line separator.
+
+```tsx
+<Divider />
+<Divider vertical className="h-8" />
+```
+
+### Tooltip
+Information displayed on hover.
+
+```tsx
+<Tooltip content="Save your changes">
+  <Button>Save</Button>
+</Tooltip>
+```
+
+### Dropdown
+Nested dropdown menus powered by Floating UI.
+
+```tsx
+<Dropdown
+  trigger={<Button>Menu</Button>}
+  items={[
+    { label: "Profile", onClick: () => alert("Profile") },
+    { 
+      label: "Settings", 
+      children: [{ label: "Account" }, { label: "Security" }] 
+    }
+  ]}
+/>
+```
+
+### useOverlay (Hook)
+A helpful hook to manage overlay states (open/close, ESC to close).
+
+```tsx
+const { isOpen, open, close, toggle } = useOverlay({ closeOnEsc: true });
+```
+
 ---
 
 ## Data Types
