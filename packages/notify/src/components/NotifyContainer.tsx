@@ -48,8 +48,8 @@ const NotifyItemComponent: React.FC<{ item: INotifyItem }> = ({ item }) => {
   const [remaining, setRemaining] = useState(options.duration);
   const [isPaused, setIsPaused] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-  const requestRef = useRef<number>();
-  const startTimeRef = useRef<number>();
+  const requestRef = useRef<number>(undefined);
+  const startTimeRef = useRef<number>(undefined);
 
   const dismiss = () => {
     setIsExiting(true);
