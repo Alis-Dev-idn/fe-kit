@@ -31,7 +31,11 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Authenticate NPM
-        run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > $NPM_CONFIG_USERCONFIG
+          echo "@alisdev:registry=https://registry.npmjs.org/" >> $NPM_CONFIG_USERCONFIG
+        env:
+          NPM_CONFIG_USERCONFIG: ${{ env.NPM_CONFIG_USERCONFIG }}
 
       - name: Build and Publish All Packages
         run: pnpm publish:all
