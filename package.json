@@ -1,6 +1,6 @@
 {
   "name": "@alisdev/fe-kit",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "packageManager": "pnpm@10.28.0",
   "description": "All-in-one frontend utility kit for React + TypeScript + Vite",
   "repository": {
