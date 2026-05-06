@@ -34,6 +34,7 @@
     "docs:build": "turbo run build --filter=docs",
     "docs:preview": "turbo run preview --filter=docs",
     "publish:changed": "pnpm turbo run publish:pkg --filter=[HEAD^1]",
+    "publish:all": "pnpm turbo run publish:pkg",
     "version:sync": "node scripts/sync-versions.js",
     "publish:pkg": "pnpm build && npm publish --access public"
   },
