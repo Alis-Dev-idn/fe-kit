@@ -2,12 +2,21 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
     },
     "publish:pkg": {
-      "dependsOn": ["build"],
-      "cache": false
+      "dependsOn": [
+        "build"
+      ],
+      "cache": false,
+      "env": [
+        "NODE_AUTH_TOKEN"
+      ]
     },
     "dev": {
       "cache": false,
@@ -17,7 +26,9 @@
       "outputs": []
     },
     "test": {
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "outputs": []
     },
     "clean": {
