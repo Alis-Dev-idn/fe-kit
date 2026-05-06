@@ -31,8 +31,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build and Publish Changed Packages
-        run: pnpm publish:changed
+      - name: Build and Publish All Packages
+        run: pnpm publish:all
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
