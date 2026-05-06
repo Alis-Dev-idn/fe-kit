@@ -34,9 +34,9 @@
     "docs:build": "turbo run build --filter=docs",
     "docs:preview": "turbo run preview --filter=docs",
     "publish:changed": "pnpm turbo run publish:pkg --filter=[HEAD^1]",
-    "publish:all": "pnpm turbo run publish:pkg",
+    "publish:all": "pnpm turbo run publish:pkg && pnpm publish:pkg",
     "version:sync": "node scripts/sync-versions.js",
-    "publish:pkg": "pnpm build && pnpm publish --no-git-checks --access public"
+    "publish:pkg": "pnpm build && (npm view $npm_package_name@$npm_package_version version > /dev/null 2>&1 && echo 'Skipping: Already published' || npm publish --no-git-checks --access public)"
   },
   "dependencies": {
     "@alisdev/fe-kit-axios": "workspace:^2.0.0",
