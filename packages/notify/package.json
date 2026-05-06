@@ -1,32 +1,33 @@
 {
-    "name":  "@alisdev/fe-kit-notify",
-    "version":  "2.0.0",
-    "main":  "./dist/index.js",
-    "module":  "./dist/index.mjs",
-    "types":  "./dist/index.d.ts",
-    "files":  [
-                  "dist",
-                  "README.md"
-              ],
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.mjs",
-            "require": "./dist/index.js"
-        },
-        "./dist/index.css": "./dist/index.css"
+  "name": "@alisdev/fe-kit-notify",
+  "version": "2.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
-    "publishConfig":  {
-                          "access":  "public"
-                      },
-    "scripts":  {
-                    "build":  "tsup src/index.ts --format cjs,esm --dts",
-                    "dev":  "tsup src/index.ts --format cjs,esm --dts --watch",
-                    "clean":  "rm -rf dist",
-                    "publish:pkg":  "pnpm build \u0026\u0026 npm publish --access public"
-                },
-    "peerDependencies":  {
-                             "react":  "^18.0.0 || ^19.0.0",
-                             "react-dom":  "^18.0.0 || ^19.0.0"
-                         }
+    "./dist/index.css": "./dist/index.css"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "clean": "rm -rf dist",
+    "publish:pkg": "pnpm build && npm publish --access public"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "_last_trigger": 1778043383588
 }
