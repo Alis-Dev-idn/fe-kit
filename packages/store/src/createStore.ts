@@ -21,6 +21,7 @@ export function createStore<S extends object, A extends Actions<S>>(config: {
   const getState = () => currentState;
 
   const emit = () => {
+    cachedFullState = null;
     listeners.forEach((l) => l());
   };
 
@@ -82,11 +83,11 @@ export function createStore<S extends object, A extends Actions<S>>(config: {
     };
   });
 
-  function useStore(): StoreFullState<S, A>;
-  function useStore<R>(selector: (state: S & { actions: any, loading: boolean, error: Error | null }) => R): R;
-  function useStore<R>(selector?: (state: any) => R): any {
-    const getSnapshot = useCallback(() => {
-      return {
+  let cachedFullState: any = null;
+
+  const getFullState = () => {
+    if (!cachedFullState) {
+      cachedFullState = {
         ...currentState,
         ...boundActions,
         actions: actionStates,
@@ -94,6 +95,15 @@ export function createStore<S extends object, A extends Actions<S>>(config: {
         error: globalError,
         reset,
       };
+    }
+    return cachedFullState;
+  };
+
+  function useStore(): StoreFullState<S, A>;
+  function useStore<R>(selector: (state: S & { actions: any, loading: boolean, error: Error | null }) => R): R;
+  function useStore<R>(selector?: (state: any) => R): any {
+    const getSnapshot = useCallback(() => {
+      return getFullState();
     }, []);
 
     const slice = useSyncExternalStore(

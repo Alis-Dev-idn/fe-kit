@@ -1,4 +1,4 @@
-import { defineConfig } from "tsup"
+import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: ["src/index.ts"],
@@ -6,7 +6,18 @@ export default defineConfig({
   dts: true,
   clean: true,
   sourcemap: true,
-  splitting: false,
   treeshake: true,
-  external: ["react", "react-dom", "react-router-dom", "xlsx"],
-})
+  external: [
+    "react", 
+    "react-dom", 
+    "react-router-dom", 
+    "axios", 
+    "zod", 
+    "recharts", 
+    "maplibre-gl", 
+    "supercluster", 
+    "xlsx",
+    "@floating-ui/react",
+    "framer-motion"
+  ],
+});

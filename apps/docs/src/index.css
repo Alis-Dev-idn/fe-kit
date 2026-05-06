@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-up: var(--surface-up);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-h: var(--primary-h);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-code-bg: var(--code-bg);
+
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+}
+
+:root {
+  /* Design Tokens */
+  --bg: #0f0f13;
+  --surface: #16161d;
+  --surface-up: #1e1e2a;
+  --border: #2a2a3a;
+  --primary: #6e56cf;
+  --primary-h: #7c65d8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --text: #f0f0f5;
+  --text-2: #9090a8;
+  --text-3: #5a5a72;
+  --code-bg: #12121a;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text font-body;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    color: var(--text);
+  }
+
+  code, pre {
+    @apply font-code;
+  }
+}
+
+/* Custom Utilities */
+@layer components {
+  .card {
+    @apply bg-surface border border-border rounded-lg p-6;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-h text-white px-4 py-2 rounded transition-colors duration-150 font-medium;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent border border-border hover:bg-surface-up text-text-2 hover:text-text px-4 py-2 rounded transition-all duration-150 font-medium;
+  }
+
+  .demo-area {
+    @apply bg-code-bg border border-dashed border-border p-8 rounded-lg;
+  }
+
+  .code-block {
+    @apply bg-code-bg border border-border rounded-lg overflow-hidden;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-3;
+  }
+}
+
+/* Animations */
+@keyframes pulse-green {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.pulse-dot {
+  @apply w-2 h-2 rounded-full bg-success;
+  animation: pulse-green 2s infinite;
+}
+
+/* Highlight.js Dark Theme Overrides */
+.hljs {
+  background: transparent !important;
+  padding: 1.5rem !important;
+}

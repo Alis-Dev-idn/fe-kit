@@ -30,9 +30,27 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "clean": "turbo run clean",
+    "docs": "turbo run dev --filter=docs",
+    "docs:build": "turbo run build --filter=docs",
+    "docs:preview": "turbo run preview --filter=docs",
+    "publish:changed": "pnpm turbo run publish:pkg --filter=[HEAD^1]",
+    "version:sync": "node scripts/sync-versions.js",
     "publish:pkg": "pnpm build && npm publish --access public"
   },
   "dependencies": {
+    "@alisdev/fe-kit-axios": "workspace:^2.0.0",
+    "@alisdev/fe-kit-chart": "workspace:^1.0.0",
+    "@alisdev/fe-kit-confirm": "workspace:^2.0.0",
+    "@alisdev/fe-kit-dashboard": "workspace:^2.0.0",
+    "@alisdev/fe-kit-form": "workspace:^2.0.0",
+    "@alisdev/fe-kit-input": "workspace:^1.0.0",
+    "@alisdev/fe-kit-map": "workspace:^1.0.0",
+    "@alisdev/fe-kit-modal": "workspace:^2.0.1",
+    "@alisdev/fe-kit-notify": "workspace:^2.0.0",
+    "@alisdev/fe-kit-route": "workspace:^2.0.0",
+    "@alisdev/fe-kit-store": "workspace:^2.0.0",
+    "@alisdev/fe-kit-table": "workspace:^2.0.0",
+    "@alisdev/fe-kit-ui": "workspace:^1.0.0",
     "axios": "^1.x",
     "zod": "^3.x"
   },
@@ -41,6 +59,7 @@
     "react-dom": "^18.x || ^19.x"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.4",
     "@types/node": "^20.x",
     "@types/react": "^19.x",
     "@types/react-dom": "^19.x",
@@ -49,5 +68,11 @@
     "turbo": "^2.x",
     "typescript": "^5.x",
     "xlsx": "^0.18.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19.0.0",
+      "@types/react-dom": "^19.0.0"
+    }
   }
 }

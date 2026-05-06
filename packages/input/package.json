@@ -1,14 +1,29 @@
 {
   "name": "@alisdev/fe-kit-input",
   "version": "1.0.0",
-  "private": true,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./dist/index.css": "./dist/index.css"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "publish:pkg": "pnpm build && npm publish --access public"
   },
   "dependencies": {
     "@tiptap/react": "^2.10.3",
@@ -18,16 +33,11 @@
     "@tiptap/extension-image": "^2.10.3",
     "@tiptap/extension-table": "^2.10.3",
     "@tiptap/extension-text-align": "^2.10.3",
-    "@tiptap/extension-placeholder": "^2.10.3"
+    "@tiptap/extension-placeholder": "^2.10.3",
+    "zod": "^3.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "zod": "^3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "zod": {
-      "optional": true
-    }
+    "react-dom": "^18.0.0"
   }
 }

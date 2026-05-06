@@ -47,8 +47,14 @@ export const TextEditor: React.FC<TextEditorProps> = ({
 
   // Handle value sync from outside
   useEffect(() => {
-    if (editor && value !== editor.getHTML()) {
-      editor.commands.setContent(value || "");
+    if (editor && value !== undefined && value !== editor.getHTML()) {
+      // Small delay to ensure editor is ready and avoid race conditions
+      const timer = setTimeout(() => {
+        if (value !== editor.getHTML()) {
+          editor.commands.setContent(value);
+        }
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [value, editor]);
 
@@ -68,7 +74,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
       )}
 
       <div className={`text-editor-container ${disabled ? "disabled" : ""} ${error ? "has-error" : ""}`}>
-        {editable && !disabled && (
+        {editor && editable && !disabled && (
           <Toolbar editor={editor} config={toolbar} onImageUpload={onImageUpload} />
         )}
         
@@ -76,7 +82,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           className="text-editor-content" 
           style={{ minHeight, maxHeight, overflowY: maxHeight ? "auto" : "visible" }}
         >
-          <EditorContent editor={editor} />
+          {editor ? <EditorContent editor={editor} /> : <div className="p-4 text-text-3 text-sm">Initializing editor...</div>}
         </div>
       </div>
 

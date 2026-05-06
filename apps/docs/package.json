@@ -1,0 +1,43 @@
+{
+  "name": "docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@alisdev/fe-kit-axios": "workspace:*",
+    "@alisdev/fe-kit-chart": "workspace:*",
+    "@alisdev/fe-kit-confirm": "workspace:*",
+    "@alisdev/fe-kit-dashboard": "workspace:*",
+    "@alisdev/fe-kit-form": "workspace:*",
+    "@alisdev/fe-kit-input": "workspace:*",
+    "@alisdev/fe-kit-map": "workspace:*",
+    "@alisdev/fe-kit-modal": "workspace:*",
+    "@alisdev/fe-kit-notify": "workspace:*",
+    "@alisdev/fe-kit-route": "workspace:*",
+    "@alisdev/fe-kit-store": "workspace:*",
+    "@alisdev/fe-kit-table": "workspace:*",
+    "@alisdev/fe-kit-ui": "workspace:*",
+    "@hookform/resolvers": "^3.3.4",
+    "axios": "^1.16.0",
+    "highlight.js": "^11.9.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.4",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  }
+}
