@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
+          scope: '@alisdev'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -30,15 +31,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Authenticate NPM
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > $NPM_CONFIG_USERCONFIG
-          echo "@alisdev:registry=https://registry.npmjs.org/" >> $NPM_CONFIG_USERCONFIG
-        env:
-          NPM_CONFIG_USERCONFIG: ${{ env.NPM_CONFIG_USERCONFIG }}
-
       - name: Build and Publish All Packages
         run: pnpm publish:all
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create Git Tag
         run: |
