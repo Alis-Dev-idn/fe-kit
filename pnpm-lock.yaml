@@ -13,43 +13,43 @@ importers:
   .:
     dependencies:
       '@alisdev/fe-kit-axios':
-        specifier: workspace:*
+        specifier: workspace:^2.0.0
         version: link:packages/axios
       '@alisdev/fe-kit-chart':
-        specifier: workspace:*
+        specifier: workspace:^1.0.0
         version: link:packages/chart
       '@alisdev/fe-kit-confirm':
-        specifier: workspace:*
+        specifier: workspace:^2.0.0
         version: link:packages/confirm
       '@alisdev/fe-kit-dashboard':
-        specifier: workspace:*
+        specifier: workspace:^2.0.0
         version: link:packages/dashboard
       '@alisdev/fe-kit-form':
-        specifier: workspace:*
+        specifier: workspace:^2.0.0
         version: link:packages/form
       '@alisdev/fe-kit-input':
-        specifier: workspace:*
+        specifier: workspace:^1.0.0
         version: link:packages/input
       '@alisdev/fe-kit-map':
-        specifier: workspace:*
+        specifier: workspace:^1.0.0
         version: link:packages/map
       '@alisdev/fe-kit-modal':
-        specifier: workspace:*
+        specifier: workspace:^2.0.1
         version: link:packages/modal
       '@alisdev/fe-kit-notify':
-        specifier: workspace:*
+        specifier: workspace:^2.0.0
         version: link:packages/notify
       '@alisdev/fe-kit-route':
-        specifier: workspace:*
+        specifier: workspace:^2.0.0
         version: link:packages/route
       '@alisdev/fe-kit-store':
-        specifier: workspace:*
+        specifier: workspace:^2.0.0
         version: link:packages/store
       '@alisdev/fe-kit-table':
-        specifier: workspace:*
+        specifier: workspace:^2.0.0
         version: link:packages/table
       '@alisdev/fe-kit-ui':
-        specifier: workspace:*
+        specifier: workspace:^1.0.0
         version: link:packages/ui
       axios:
         specifier: ^1.x
