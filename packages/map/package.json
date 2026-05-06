@@ -22,7 +22,7 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "clean": "rm -rf dist",
-    "publish:pkg": "pnpm build && npm publish --access public"
+    "publish:pkg": "pnpm build && pnpm publish --no-git-checks --access public"
   },
   "dependencies": {
     "supercluster": "^8.0.1",
