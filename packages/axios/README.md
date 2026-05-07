@@ -18,42 +18,37 @@ pnpm add @alisdev/fe-kit-axios
 
 ## Global Setup
 
-Before making any requests, you should configure the global settings. This is typically done in your application's entry point (e.g., `src/main.tsx` or `src/App.tsx`).
+Before making any requests, you should register your API instances. This is typically done in your application's entry point (e.g., `src/main.tsx` or `src/App.tsx`).
 
 ```typescript
 import { AxiosKit } from "@alisdev/fe-kit-axios";
 
-AxiosKit.setup({
+AxiosKit.register("main", {
   baseURL: "https://api.yourdomain.com/v1",
   timeout: 15000,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",
   },
-  // Global handler for 401 Unauthorized responses
-  onUnauthorized: () => {
-    console.warn("Session expired. Redirecting to login...");
-    AxiosKit.clearToken();
-    window.location.href = "/login";
-  }
+  // Token storage configuration (optional)
+  tokenStorage: {
+    type: "localStorage",
+    accessTokenKey: "access_token",
+    refreshTokenKey: "refresh_token"
+  },
+  refreshTokenPath: "/auth/refresh"
 });
-
-// If the user is already logged in (e.g., from local storage)
-const savedToken = localStorage.getItem("token");
-if (savedToken) {
-  AxiosKit.setToken(savedToken);
-}
 ```
 
-## Creating an Instance
+## Using an Instance
 
-While you can use the default instance implicitly, it's recommended to create a dedicated instance for your services.
+You can retrieve a registered instance anywhere in your app using the name you provided.
 
 ```typescript
 import { AxiosKit } from "@alisdev/fe-kit-axios";
 
-// Creates an instance using the global configuration
-export const api = AxiosKit.createInstance();
+// Returns the registered "main" instance
+export const api = AxiosKit.use("main");
 ```
 
 ## Usage Examples
@@ -127,15 +122,14 @@ export async function uploadAvatar(userId: string, file: File) {
 The kit provides dedicated methods to handle the `Authorization` header without needing to manually modify interceptors.
 
 ```typescript
-import { AxiosKit } from "@alisdev/fe-kit-axios";
+const api = AxiosKit.use("main");
 
 // After successful login:
-// This sets `Authorization: Bearer <token>` on all future requests
-AxiosKit.setToken("eyJhbGciOiJIUzI1NiIsIn...");
+// This sets the access token and automatically includes it in future headers
+api.getTokenStorage()?.setAccessToken("eyJhbGciOiJIUzI1NiIsIn...");
 
 // After logout:
-// This removes the `Authorization` header
-AxiosKit.clearToken();
+api.getTokenStorage()?.clear();
 ```
 
 ## API Reference

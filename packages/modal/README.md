@@ -83,7 +83,7 @@ export function ProfileSettings() {
       <button onClick={() => setIsOpen(true)}>Open Settings</button>
 
       <Modal 
-        open={isOpen} 
+        isOpen={isOpen} 
         onClose={() => setIsOpen(false)} 
         title="Account Settings"
         size="md"

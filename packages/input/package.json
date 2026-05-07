@@ -1,6 +1,6 @@
 {
   "name": "@alisdev/fe-kit-input",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -26,14 +26,18 @@
     "publish:pkg": "pnpm build && (npm view $npm_package_name@$npm_package_version version > /dev/null 2>&1 && echo 'Skipping: Already published' || pnpm publish --no-git-checks --access public)"
   },
   "dependencies": {
-    "@tiptap/react": "^2.10.3",
-    "@tiptap/starter-kit": "^2.10.3",
-    "@tiptap/extension-underline": "^2.10.3",
-    "@tiptap/extension-link": "^2.10.3",
-    "@tiptap/extension-image": "^2.10.3",
-    "@tiptap/extension-table": "^2.10.3",
-    "@tiptap/extension-text-align": "^2.10.3",
-    "@tiptap/extension-placeholder": "^2.10.3",
+    "@tiptap/extension-image": "3.22.5",
+    "@tiptap/extension-link": "3.22.5",
+    "@tiptap/extension-placeholder": "3.22.5",
+    "@tiptap/extension-table": "3.22.5",
+    "@tiptap/extension-table-cell": "3.22.5",
+    "@tiptap/extension-table-header": "3.22.5",
+    "@tiptap/extension-table-row": "3.22.5",
+    "@tiptap/extension-text-align": "3.22.5",
+    "@tiptap/extension-underline": "3.22.5",
+    "@tiptap/pm": "3.22.5",
+    "@tiptap/react": "3.22.5",
+    "@tiptap/starter-kit": "3.22.5",
     "zod": "^3.0.0"
   },
   "peerDependencies": {

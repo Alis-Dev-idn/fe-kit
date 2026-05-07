@@ -83,6 +83,11 @@ export function createStore<S extends object, A extends Actions<S>>(config: {
     };
   });
 
+  /**
+   * Snapshot stability is CRITICAL for useSyncExternalStore.
+   * We must return the exact same object reference if the state hasn't changed,
+   * otherwise React will enter an infinite re-render loop.
+   */
   let cachedFullState: any = null;
 
   const getFullState = () => {
