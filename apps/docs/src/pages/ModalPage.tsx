@@ -8,6 +8,17 @@ import { TabbedCode } from "../components/shared/TabbedCode";
 import { Callout } from "../components/shared/Callout";
 import { Button } from "@alisdev/fe-kit-ui";
 
+import { PropsTable, PropRow } from "../components/shared/PropsTable";
+
+const MODAL_PROPS: PropRow[] = [
+  { name: "isOpen", type: "boolean", required: true, description: "Whether the modal is visible." },
+  { name: "onClose", type: "() => void", required: true, description: "Callback triggered when the modal should close." },
+  { name: "size", type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full'", default: "'md'", description: "The width of the modal." },
+  { name: "position", type: "'center' | 'top' | 'bottom'", default: "'center'", description: "Vertical position of the modal." },
+  { name: "closeOnBackdrop", type: "boolean", default: "true", description: "Whether clicking the backdrop closes the modal." },
+  { name: "closeOnEscape", type: "boolean", default: "true", description: "Whether pressing Escape closes the modal." },
+];
+
 export const ModalPage: React.FC = () => {
   const { isOpen, open, close } = useModal();
 
@@ -83,16 +94,8 @@ export const ModalPage: React.FC = () => {
       </section>
 
       <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6">API Reference</h2>
-        <ApiTable 
-          rows={[
-            { name: "modal.open(config)", type: "Function", description: "Opens a modal imperatively. Returns unique ID." },
-            { name: "modal.close(id)", type: "Function", description: "Closes a specific modal by ID." },
-            { name: "modal.closeAll()", type: "Function", description: "Closes all active modals in the stack." },
-            { name: "isOpen", type: "boolean", description: "Controls visibility (Declarative)." },
-            { name: "onClose", type: "Function", description: "Callback when modal is requested to close." },
-          ]}
-        />
+        <h2 className="text-2xl font-bold mb-6">Modal Props</h2>
+        <PropsTable props={MODAL_PROPS} />
       </section>
 
       <section className="mb-16">

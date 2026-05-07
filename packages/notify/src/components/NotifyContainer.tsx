@@ -48,8 +48,6 @@ const NotifyItemComponent: React.FC<{ item: INotifyItem }> = ({ item }) => {
   const [remaining, setRemaining] = useState(options.duration);
   const [isPaused, setIsPaused] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-  const requestRef = useRef<number>(undefined);
-  const startTimeRef = useRef<number>(undefined);
 
   const dismiss = () => {
     setIsExiting(true);
@@ -57,34 +55,34 @@ const NotifyItemComponent: React.FC<{ item: INotifyItem }> = ({ item }) => {
       notifyStore.removeNotification(id);
     }, options.animation.duration);
   };
-
-  const animate = (time: number) => {
-    if (startTimeRef.current === undefined) {
-      startTimeRef.current = time;
-    }
-    if (!isPaused && options.duration > 0) {
-      const elapsed = time - startTimeRef.current;
-      const newRemaining = Math.max(0, options.duration - elapsed);
-      setRemaining(newRemaining);
-      if (newRemaining <= 0) {
-        dismiss();
-        return;
-      }
-    } else {
-      // If paused, update start time to "push" it forward
-      startTimeRef.current = time - (options.duration - remaining);
-    }
-    requestRef.current = requestAnimationFrame(animate);
-  };
-
   useEffect(() => {
-    if (options.duration > 0) {
-      requestRef.current = requestAnimationFrame(animate);
-    }
-    return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+    if (options.duration <= 0 || isExiting) return;
+
+    let animationFrame: number;
+    let lastTime = performance.now();
+
+    const tick = () => {
+      const now = performance.now();
+      const delta = now - lastTime;
+      lastTime = now;
+
+      if (!isPaused) {
+        setRemaining((prev) => {
+          const next = prev - delta;
+          if (next <= 0) {
+            dismiss();
+            return 0;
+          }
+          return next;
+        });
+      }
+      
+      animationFrame = requestAnimationFrame(tick);
     };
-  }, [isPaused, options.duration]);
+
+    animationFrame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isPaused, isExiting, options.duration]);
 
   const progress = options.duration > 0 ? (remaining / options.duration) * 100 : 0;
 

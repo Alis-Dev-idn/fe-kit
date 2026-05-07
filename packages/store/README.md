@@ -25,36 +25,28 @@ Global stores are singletons. State lives outside the React tree, meaning you ca
 
 ```typescript
 import { createStore } from "@alisdev/fe-kit-store";
-import { persist, logger } from "@alisdev/fe-kit-store/middleware";
-
-interface User {
-  id: string;
-  name: string;
-}
 
 interface AuthState {
-  user: User | null;
+  user: { name: string } | null;
   isAuthenticated: boolean;
 }
 
-export const useAuthStore = createStore<AuthState>(
+export const useAuthStore = createStore({
   // 1. Initial State
-  {
+  state: {
     user: null,
     isAuthenticated: false
-  }, 
-  // 2. Options & Middlewares
-  {
-    name: "auth-store", // Required for persist/devtools
-    middlewares: [
-      logger(), // Logs prev state, action, and next state to console
-      persist({ 
-        key: "my-app-auth", 
-        storage: window.localStorage // or window.sessionStorage
-      })
-    ]
+  } as AuthState,
+  
+  // 2. Actions (can be async)
+  actions: {
+    login: async (state, credentials: any) => {
+      // Logic for login...
+      return { user: { name: "John Doe" }, isAuthenticated: true };
+    },
+    logout: (state) => ({ user: null, isAuthenticated: false })
   }
-);
+});
 ```
 
 ### Consuming in Components
@@ -63,38 +55,21 @@ export const useAuthStore = createStore<AuthState>(
 import { useAuthStore } from "./authStore";
 
 function UserProfile() {
-  // Selectively extract state. React will only re-render if these specific values change.
-  const { user, isAuthenticated, setState } = useAuthStore();
+  // Access state and actions directly
+  const { user, isAuthenticated, login, logout, loading, error } = useAuthStore();
 
-  const handleLogout = () => {
-    // Partial updates: you only need to provide the fields you want to change
-    setState({ user: null, isAuthenticated: false });
-  };
-
-  if (!isAuthenticated) return <LoginScreen />;
+  if (!isAuthenticated) {
+    return <button onClick={() => login()}>Login</button>;
+  }
 
   return (
     <div>
       <h1>Welcome, {user?.name}</h1>
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={logout}>Logout</button>
+      {loading && <span>Updating...</span>}
     </div>
   );
 }
-```
-
-### Deep Updates
-`setState` performs a shallow merge. For deeply nested updates, use the callback pattern:
-
-```typescript
-setState((prev) => ({
-  user: {
-    ...prev.user,
-    settings: {
-      ...prev.user.settings,
-      theme: "dark"
-    }
-  }
-}));
 ```
 
 ## 2. Context Store (Scoped State)
@@ -106,18 +81,16 @@ Global stores are bad for reusable components (e.g., if you render `<MyTable />`
 ```tsx
 import { createContextStore } from "@alisdev/fe-kit-store";
 
-interface TableState {
-  page: number;
-  search: string;
-}
-
-// 1. Define how the initial state is created from Provider props
-export const { Provider: TableProvider, useStore: useTableStore } = createContextStore(
-  (props: { initialPage?: number }) => ({
-    page: props.initialPage || 1,
+export const { Provider: TableProvider, useStore: useTableStore } = createContextStore({
+  state: {
+    page: 1,
     search: ""
-  })
-);
+  },
+  actions: {
+    setPage: (state, page: number) => ({ page }),
+    setSearch: (state, search: string) => ({ search })
+  }
+});
 ```
 
 ### Usage
