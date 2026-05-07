@@ -19,11 +19,17 @@ try {
   // Ignore if already registered
 }
 
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
 export const AxiosPage: React.FC = () => {
   const api = AxiosKit.use("demo");
 
   // useApi uses a function that returns a promise
-  const { data, loading, error, execute } = useApi<any[]>(
+  const { data, loading, error, execute } = useApi<Post[]>(
     (signal) => api.get("/posts", { params: { _limit: 3 }, signal }),
     { immediate: false }
   );
@@ -62,7 +68,7 @@ export const AxiosPage: React.FC = () => {
 
             {data && (
               <div className="grid grid-cols-1 gap-4">
-                {data.map((post: any) => (
+                {data.map((post: { id: number; title: string; body: string }) => (
                   <Card key={post.id}>
                     <CardHeader title={post.title} />
                     <CardContent className="text-sm text-text-2">

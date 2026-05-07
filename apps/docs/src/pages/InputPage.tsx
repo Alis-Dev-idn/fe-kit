@@ -102,7 +102,7 @@ export const InputPage: React.FC = () => {
                 min={0}
                 max={100}
                 value={range}
-                onChange={(val: any) => setRange(val as number)}
+                onChange={(val: number) => setRange(val)}
                 showValue
               />
 

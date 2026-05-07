@@ -162,12 +162,12 @@ export const NotifyPage: React.FC = () => {
             {
               label: "Basic Usage",
               language: "tsx",
-              code: `import { notify } from "@alisdev/fe-kit-notify";\n\nconst handleClick = () => {\n  notify.success("Saved!", "Your changes have been saved.");\n};`
+              code: `import { notify } from "@alisdev/fe-kit-notify";\n\nconst handleClick = () => {\n  notify.success("Your changes have been saved.");\n};`
             },
             {
               label: "Advanced",
               language: "tsx",
-              code: `notify.info("Processing...", "This might take a while.", {\n  position: "bottom-center",\n  duration: 5000,\n  showProgress: true,\n  onClose: () => console.log("Closed!")\n});`
+              code: `notify.info("New updates are available.", {\n  position: "bottom-center",\n  duration: 5000,\n  showProgress: true,\n  onClose: () => console.log("Closed!")\n});`
             },
             {
               label: "With TypeScript",

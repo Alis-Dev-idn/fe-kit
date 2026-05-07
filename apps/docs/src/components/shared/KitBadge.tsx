@@ -15,7 +15,7 @@ const CONFIG = {
 };
 
 export const KitBadge: React.FC<KitBadgeProps> = ({ category }) => {
-  const config = CONFIG[category];
+  const config = CONFIG[category as keyof typeof CONFIG];
 
   return (
     <span 
